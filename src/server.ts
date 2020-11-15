@@ -18,7 +18,7 @@ export class SetupServer extends Server {
   private setupExpress(): void {
     this.app.use(Express.json());
   }
-
+  
   private setupControllers(): void {
     const userController = new UserController();
     this.addControllers([
