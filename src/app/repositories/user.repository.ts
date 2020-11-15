@@ -13,4 +13,8 @@ export class UserRepository {
   public static create = (data: userData): UserModel => {
     return new User(data);
   }
+  
+  public static getUser = async (email: string): Promise<any> => {
+    return await User.findOne({email: email});
+  }
 }
