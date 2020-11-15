@@ -1,6 +1,6 @@
 import { UserRepository } from '@src/app/repositories/user.repository';
+import AuthService  from '@src/app/services/auth.service';
 import { Controller, Post } from '@overnightjs/core';
-import AuthService  from '@src/app/services/auth';
 import { BaseController } from './base.controller';
 import { Request, Response } from 'express';
 
@@ -16,7 +16,7 @@ export class UserController extends BaseController{
       const userSerializer = {...newUser.toJSON() }
       
       delete userSerializer.password;
-      
+
       res.status(201).send(userSerializer);
     } catch (error) {
       this.sendCreatedUpdateErrorResponse(res, error);

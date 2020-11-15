@@ -1,8 +1,8 @@
 import './utils/module-alias';
 import { UserController } from './app/controllers/user.controller';
+import * as database from '@src/config/database';
 import Express, { Application } from 'express';
 import { Server } from '@overnightjs/core';
-import * as database from '@src/database';
 
 export class SetupServer extends Server {
   constructor(private port = 3333) {
