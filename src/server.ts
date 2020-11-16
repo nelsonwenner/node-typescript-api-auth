@@ -1,9 +1,13 @@
 import './utils/module-alias';
+import { OpenAPIV3 } from 'express-openapi-validator/dist/framework/types';
 import { UserController } from './app/controllers/user.controller';
+import { OpenApiValidator } from 'express-openapi-validator';
 import * as database from '@src/config/database';
 import Express, { Application } from 'express';
 import expressPino from 'express-pino-logger';
 import { Server } from '@overnightjs/core';
+import swaggerUi from 'swagger-ui-express';
+import apiSchema from './api.schema.json';
 import logger from './logger';
 import cors from 'cors';
 
@@ -14,6 +18,7 @@ export class SetupServer extends Server {
   
   public async init(): Promise<void> {
     this.setupExpress();
+    await this.docsSetup();
     this.setupControllers();
     await this.setupDatabase();
   }
@@ -24,6 +29,15 @@ export class SetupServer extends Server {
     this.app.use(cors({origin: '*'}));
   }
   
+  private async docsSetup(): Promise<void> {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(apiSchema));
+    await new OpenApiValidator({
+      apiSpec: apiSchema as OpenAPIV3.Document,
+      validateRequests: true,
+      validateResponses: true,
+    }).install(this.app);
+  }
+
   private setupControllers(): void {
     const userController = new UserController();
     this.addControllers([

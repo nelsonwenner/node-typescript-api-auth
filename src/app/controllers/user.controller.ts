@@ -9,7 +9,7 @@ import { User } from '@src/app/models/users';
 @Controller('users')
 export class UserController extends BaseController{
   @Post('')
-  public async store(req: Request, res: Response): Promise<void> {
+  public async store(req: Request, res: Response): Promise<any> {
     try {
       const user = UserRepository.create(req.body);
       const newUser = await user.save();
@@ -18,20 +18,20 @@ export class UserController extends BaseController{
       
       delete userSerializer.password;
 
-      res.status(201).send(userSerializer);
+      return res.status(201).send(userSerializer);
     } catch (error) {
       this.sendCreatedUpdateErrorResponse(res, error);
     }
   }
-
+  
   @Get('')
   @Middleware([authMiddleware])
-  public async index(req: Request, res: Response): Promise<void> {
+  public async index(req: Request, res: Response): Promise<any> {
     try {
       const user = await User.findById(req.user.id);
       const userSerializer = { ...user?.toJSON() }
       delete userSerializer.password;
-      res.status(200).send(userSerializer);
+      return res.status(200).send(userSerializer);
     } catch (error) {
       this.sendCreatedUpdateErrorResponse(res, error);
     }
