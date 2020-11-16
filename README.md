@@ -59,6 +59,10 @@ $ npm run start
 ```
   * Open backend, the host [localhost:3333](http://localhost:3333) 
 
+## :spiral_notepad: Swagger
+
+To access the API documentation, with the server running, access [http://localhost:3333/docs](http://localhost:3333/docs)
+
 ## :memo: License
 This project is under the MIT license. See the [LICENSE](LICENSE.md) for more information.
 
