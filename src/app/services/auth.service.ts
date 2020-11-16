@@ -24,7 +24,7 @@ export default class AuthService {
     return await bcrypt.compare(password, hashedPassword);
   }
 
-  public static generateToken(payload: Object): string {
+  public static generateToken(payload: object): string {
     return jwt.sign(payload, `${process.env.SECRET_KEY}`, {
       expiresIn: `${process.env.EXPIRATION_TIME}`
     });
