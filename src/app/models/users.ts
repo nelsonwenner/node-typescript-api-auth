@@ -1,5 +1,5 @@
 import mongoose, { Document, Model } from 'mongoose';
-import AuthService from '@src/app/services/auth';
+import AuthService from '@src/app/services/auth.service';
 
 export interface User {
   _id?: string;

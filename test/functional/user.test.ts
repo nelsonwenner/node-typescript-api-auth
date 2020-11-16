@@ -1,5 +1,5 @@
 import { User } from '@src/app/models/users';
-import AuthService from '@src/app/services/auth';
+import AuthService from '@src/app/services/auth.service';
 
 describe('User functional tests', () => {
 
@@ -18,7 +18,7 @@ describe('User functional tests', () => {
         .send(newUser);
 
       expect(status).toBe(201);
-      
+
       const currentUser = await User.findById(body.id);
       
       await expect(
