@@ -6,14 +6,14 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node dist/src/index.js",
-    "dev": "LOGGER_ENABLE=true ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts",
+    "dev": "LOGGER_ENABLE=1 ts-node-dev --transpile-only --ignore-watch node_modules src/index.ts",
     "lint": "eslint ./src ./test --ext .ts",
     "lint:fix": "eslint ./src ./test --ext .ts --fix",
     "style:check": "prettier --check 'src/**/*.ts' 'test/**/*.ts'",
     "style:fix": "prettier --write 'src/**/*.ts' 'test/**/*.ts'",
     "test:functional": "jest --projects ./test --runInBand",
     "test:unit": "jest",
-    "test": "LOGGER_ENABLE=false npm run test:functional"
+    "test": "LOGGER_ENABLE=0 npm run test:functional"
   },
   "repository": {
     "type": "git",

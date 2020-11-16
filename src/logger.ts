@@ -2,6 +2,6 @@ import pino from 'pino';
 import 'dotenv/config';
 
 export default pino({
-  enabled: process.env.LOGGER_ENABLE as unknown as boolean,
+  enabled: parseInt(`${process.env.LOGGER_ENABLE}`) ? true : false,
   level: process.env.LOGGER_LEVEL,
 });
